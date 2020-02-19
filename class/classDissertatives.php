@@ -1,25 +1,23 @@
 <?php
+    error_reporting(1);
+    ini_set("display_errors",1);
+    
+    require_once 'class/Connection.php';
 
-    require_once 'classQuestions.php';
-    require_once 'classConnection.php';
+    class Dissertatives {
 
-    class Dissertatives extends Questions {
+        public function insertQuestDis($params = array()) {
+            foreach ($params as $key => $value) {         
+                $sql_insert = "INSERT INTO question_dissertative (QUESTION_DIS_NUMBER, DESC_QUESTION_DIS) VALUES (?, ?)";
+                $stmt = Connection::prepare($sql_insert);
 
-        private $con;
-        private $dissertation;
+                $stmt->bindValue(1, $value['num_question_dis'], PDO::PARAM_INT);
+                $stmt->bindValue(2, $value['question_dis'], PDO::PARAM_STR);
 
-        //construct method
-        private function __construct() {
-            $this->con = new Connection();
-        }
+                $stmt->execute();
 
-        //Setters and Getters methods
-        public function getDissertation() {
-            return $this->dissertation;
-        }
-
-        public function setDissertation($d) {
-            $this->dissertation = $d;
+            } 
+                 
         }
 
     }

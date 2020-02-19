@@ -6,48 +6,28 @@
 
     class Alternatives {
 
-        public function insertQuestAlt($params = array()) {
-
-            //echo '<pre>'.print_r($params).'</pre>';
-
-            $sql_insert = "INSERT INTO question_alternative (QUESTION_NUMBER, DESC_QUESTION_ALT, ALTERNATIVE_A, ALTERNATIVE_B,
+        public function insertQuestAlt($params = array()) {       
+            foreach ($params as $key => $value) { 
+                $sql_insert = "INSERT INTO question_alternative (QUESTION_NUMBER, DESC_QUESTION_ALT, ALTERNATIVE_A, ALTERNATIVE_B,
                           ALTERNATIVE_C, ALTERNATIVE_D, ALTERNATIVE_E, ALTERNATIVE_F, ALTERNATIVE_G, ALT_CORRECT) VALUES 
-                          (:num_question_alt, :question_alt, :alternativeA, :alternativeB, :alternativeC, :alternativeD, 
-                          :alternativeE, :alternativeF, :alternativeG, :correctAlt)";
+                          (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            $stmt = Connection::prepare($sql_insert); 
-
-            $stmt->bindParam(':num_question_alt', $num_question_alt);
-            $stmt->bindParam(':question_alt', $question_alt);
-            $stmt->bindParam(':alternativeA', $alternativeA);
-            $stmt->bindParam(':alternativeB', $alternativeB);
-            $stmt->bindParam(':alternativeC', $alternativeC);
-            $stmt->bindParam(':alternativeD', $alternativeD);
-            $stmt->bindParam(':alternativeE', $alternativeE);
-            $stmt->bindParam(':alternativeF', $alternativeF);
-            $stmt->bindParam(':alternativeG', $alternativeG);
-            $stmt->bindParam(':correctAlt', $correctAlt); 
-
-            foreach ($params as $nameField => $valueField) { 
-                foreach ($valueField as $indice => $value) {
+                $stmt = Connection::prepare($sql_insert);
     
-                $num_question_alt = $params['num_question_alt'][$indice];
-                $question_alt = $params['question_alt'][$indice];
-                $alternativeA = $params['alternativaA'][$indice];
-                $alternativeB = $params['alternativaB'][$indice];
-                $alternativeC = $params['alternativaC'][$indice];
-                $alternativeD = $params['alternativaD'][$indice];
-                $alternativeE = $params['alternativaE'][$indice];
-                $alternativeF = $params['alternativaF'][$indice];
-                $alternativeG = $params['alternativaG'][$indice];
-                $correctAlt = $params['alt_correta'][$indice];
+                $stmt->bindValue(1, $value['num_question_alt'], PDO::PARAM_INT);
+                $stmt->bindValue(2, $value['question_alt'], PDO::PARAM_STR);
+                $stmt->bindValue(3, $value['alternativeA'], PDO::PARAM_STR);
+                $stmt->bindValue(4, $value['alternativeB'], PDO::PARAM_STR);
+                $stmt->bindValue(5, $value['alternativeC'], PDO::PARAM_STR);
+                $stmt->bindValue(6, $value['alternativeD'], PDO::PARAM_STR);
+                $stmt->bindValue(7, $value['alternativeE'], PDO::PARAM_STR);
+                $stmt->bindValue(8, $value['alternativeF'], PDO::PARAM_STR);
+                $stmt->bindValue(9, $value['alternativeG'], PDO::PARAM_STR);
+                $stmt->bindValue(10, $value['correctAlt'], PDO::PARAM_STR);
 
                 $stmt->execute();
 
-                }
-                
             } 
-
         }
 
 

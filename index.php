@@ -1,14 +1,24 @@
 <?php
 
     require_once 'class/classAlternatives.php';
+    require_once 'class/classDissertatives.php';
 
     if (isset($_POST['cad-question-alt'])) {
-  
-            $qa = new Alternatives();
+        if (!empty($_POST['alt'])) {
             
-            $qa->insertQuestAlt($_POST['questAlt']);
-        //header("Refresh: 0; url=registerTest.php");
+            $alt = new Alternatives();           
+            $alt->insertQuestAlt($_POST['alt']);
+            //header("Refresh: 0; url=registerTest.php");
+            echo "Questões alternativas criadas";
+
+        } 
         
+        if (!empty($_POST['dis'])) {
+            
+            $dis = new Dissertatives();
+            $dis->insertQuestDis($_POST['dis']);
+
+        }
     }
 
 ?>

@@ -19,14 +19,14 @@ function criaQuestoes() {
         let num_question_alt = document.createElement('input');
         elemento_pai_alt.appendChild(num_question_alt);
         num_question_alt.setAttribute("type", "text");
-        num_question_alt.setAttribute("name", "questAlt[num_question_alt][]");
+        num_question_alt.setAttribute("name", 'alt[' + indexAlt + '][num_question_alt]');
         num_question_alt.setAttribute("class", "num_question_alt");
         num_question_alt.setAttribute("value", "");
         num_question_alt.setAttribute("placeholder", "Número da questão:");
        
         const textarea_alt = document.createElement('textarea');
         elemento_pai_alt.appendChild(textarea_alt);
-        textarea_alt.setAttribute("name", "questAlt[question_alt][]");
+        textarea_alt.setAttribute("name", 'alt[' + indexAlt + '][question_alt]');
         textarea_alt.setAttribute("value", "");
         textarea_alt.setAttribute("class", "question_alt");
         textarea_alt.setAttribute("placeholder", "Questão a ser respondida:");
@@ -39,7 +39,7 @@ function criaQuestoes() {
             const elemento_pai_alt = document.querySelector(".questoes_alternativas");
             var alternativa = document.createElement('textarea');
             elemento_pai_alt.appendChild(alternativa); 
-            alternativa.setAttribute("name", 'questAlt' + '[alternativa' + letra_alternativa + ']' + '[]');
+            alternativa.setAttribute("name", 'alt[' + indexAlt + ']' +  '[alternative' + letra_alternativa + ']');
             alternativa.setAttribute("class", "alt");
             alternativa.setAttribute("placeholder", letra_alternativa + ")");
             
@@ -48,7 +48,7 @@ function criaQuestoes() {
         const alt_correta = document.createElement('input');
         elemento_pai_alt.appendChild(alt_correta);
         alt_correta.setAttribute("type", "text");
-        alt_correta.setAttribute("name", "questAlt[alt_correta][]");
+        alt_correta.setAttribute("name", 'alt[' + indexAlt + '][correctAlt]');
         alt_correta.setAttribute("class", "alt_correta");
         alt_correta.setAttribute("placeholder", "Alternativa correta: Ex. B");
   
@@ -63,14 +63,14 @@ function criaQuestoes() {
         let num_question_dis = document.createElement('input');
         elemento_pai_dis.appendChild(num_question_dis);
         num_question_dis.setAttribute("type", "text");
-        num_question_dis.setAttribute("name", "questDis[num_question_dis][]");
+        num_question_dis.setAttribute("name", 'dis[' + indexDis + '][num_question_dis]');
         num_question_dis.setAttribute("class", "num_question_dis");
         num_question_dis.setAttribute("value", "");
         num_question_dis.setAttribute("placeholder", "Número da questão:");
     
         const textarea_dis = document.createElement('textarea');
         elemento_pai_dis.appendChild(textarea_dis);
-        textarea_dis.setAttribute("name", "questDis[question_dis][]");
+        textarea_dis.setAttribute("name", 'dis[' + indexDis + '][question_dis]');
         textarea_dis.setAttribute("class", "question_dis");
         textarea_dis.setAttribute("placeholder", "Questão a ser respondida:");
 
